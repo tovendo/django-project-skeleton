@@ -7,10 +7,13 @@ from django.utils.translation import ugettext_lazy as _
 # project imports
 from .common import PROJECT_ROOT, MIDDLEWARE
 
+
 # ##### INTERNATIONALIZATION ##############################
 
-LANGUAGE_CODE = 'de'
-TIME_ZONE = 'Europe/Berlin'
+# https://docs.djangoproject.com/en/{{ docs_version }}/topics/i18n/
+
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Maceio'
 
 # Internationalization
 USE_I18N = True
@@ -24,7 +27,7 @@ USE_TZ = True
 # This list of languages will be provided
 LANGUAGES = (
     ('en', _('English')),
-    ('de', _('German'))
+    ('pt-br', _('Brazilian Portuguese')),
 )
 
 # Look for translations in these locations
