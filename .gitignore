@@ -1,6 +1,8 @@
 # do NOT track Python compilation files
 *.py[cod]
 __python__/*
+*.pyc
+__pycache__/*
 
 # do NOT track tox's testing folder
 .tox
@@ -15,3 +17,14 @@ coverage_html
 
 # I started relying on putting temporary notes into TODO files
 *.todo
+
+# IDE
+.vscode/*
+.idea/*
+
+# VENV
+env/*
+venv/*
+
+# Config
+local_settings.py
