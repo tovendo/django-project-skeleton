@@ -13,3 +13,5 @@ Sphinx
 # **flake8** is used to check for PEP8 compliance
 # See http://flake8.pycqa.org/en/latest/index.html
 flake8
+
+autopep8

@@ -1,8 +1,8 @@
 # do NOT track Python compilation files
 *.py[cod]
-__python__/*
+__python__/
 *.pyc
-__pycache__/*
+__pycache__/
 
 # do NOT track tox's testing folder
 .tox
@@ -19,12 +19,12 @@ coverage_html
 *.todo
 
 # IDE
-.vscode/*
-.idea/*
+.vscode/
+.idea/
 
 # VENV
-env/*
-venv/*
+env/
+venv/
 
 # Config
 local_settings.py

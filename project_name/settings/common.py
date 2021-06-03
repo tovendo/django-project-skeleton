@@ -126,6 +126,10 @@ STATIC_URL = '/static/'
 # the URL for media files
 MEDIA_URL = '/media/'
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # finally grab the SECRET KEY
 try:
