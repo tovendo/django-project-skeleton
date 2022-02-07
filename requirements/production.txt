@@ -1,4 +1,8 @@
+# common
 dj-database-url
 Django~=3.2
 psycopg2-binary~=2.9
 python-decouple
+
+# production
+gunicorn

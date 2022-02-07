@@ -2,14 +2,6 @@
 from .development import *
 
 
-# turn off all debugging
-DEBUG = False
-
-INTERNAL_IPS = []
-
-# You will have to determine, which hostnames should be served by Django
-ALLOWED_HOSTS = []
-
 # ##### SECURITY CONFIGURATION ############################
 
 # TODO: Make sure, that sensitive information uses https

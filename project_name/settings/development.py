@@ -1,4 +1,6 @@
 # Python imports
+from decouple import config
+from dj_database_url import parse as db_url
 from os.path import join
 
 # project imports
@@ -10,10 +12,11 @@ from .i18n import *
 
 # ##### DEBUG CONFIGURATION ###############################
 
-DEBUG = True
+DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
+HOMOLOG = config('DJANGO_HOMOLOG', default=True, cast=bool)
 
 # allow all hosts during development
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
 # ##### DATABASE CONFIGURATION ############################
@@ -21,19 +24,14 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(PROJECT_ROOT, 'run', 'dev.sqlite3'),
-    }
+    'default': config(
+        'DJANGO_DATABASE_URL',
+        default='sqlite:///' + join(PROJECT_ROOT, 'run', 'db.sqlite3'),
+        cast=db_url
+    )
 }
 
 
 # ##### APPLICATION CONFIGURATION #########################
 
 INSTALLED_APPS = DEFAULT_APPS
-
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass

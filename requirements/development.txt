@@ -1,17 +1,22 @@
+# common
+-r common.txt
+
 # coverage measures code coverage of Python programs
 # See http://coverage.readthedocs.io/en/latest/
-coverage
+# coverage
 
 # **tox** automates testing
 # See https://tox.readthedocs.io/en/latest/index.html
-tox
+# tox
 
 # **Sphinx** is used to create documentation
 # See http://www.sphinx-doc.org/en/stable/tutorial.html
-Sphinx
+# Sphinx
 
 # **flake8** is used to check for PEP8 compliance
 # See http://flake8.pycqa.org/en/latest/index.html
-flake8
+# flake8
 
+# A tool that automatically formats Python code to conform to the PEP 8 style guide
+# See https://pypi.org/project/autopep8/
 autopep8

@@ -25,6 +25,4 @@ coverage_html
 # VENV
 env/
 venv/
-
-# Config
-local_settings.py
+.env

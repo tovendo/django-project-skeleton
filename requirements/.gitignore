@@ -1,0 +1,11 @@
+# specific .gitignore for this directory
+
+# ignore everything
+*
+
+!common.txt
+!development.txt
+!production.txt
+
+# except this .gitignore
+!.gitignore

@@ -3,14 +3,13 @@ upstream {{ project_name }} {
 }
 
 server {
-
     listen 80;
     listen [::]:80;
 
     server_name {{ project_name }}.local;
 
     client_max_body_size 4G;
-    keepalive_timeout 5;
+    keepalive_timeout 300s;
 
     access_log /code/logs/nginx-access.log;
     error_log /code/logs/nginx-error.log;
@@ -28,8 +27,15 @@ server {
     location / {
         proxy_pass http://{{ project_name }};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Host $host;
         proxy_redirect off;
+        proxy_read_timeout 600s;
+        proxy_connect_timeout 600s;
+    }
+
+    location = /favicon.ico {
+        alias /code/run/static/favicon.ico;
     }
 
     location /static/ {
@@ -41,5 +47,4 @@ server {
         autoindex on;
         alias /code/run/media/;
     }
-
 }

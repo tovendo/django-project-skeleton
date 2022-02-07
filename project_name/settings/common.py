@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 # Python imports
 import sys
 
+from datetime import timedelta
+from decouple import config
 from os.path import abspath, basename, dirname, join, normpath
 
 
@@ -59,6 +61,12 @@ DEFAULT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# Libs
+DEFAULT_APPS += []
+
+# Apps
+DEFAULT_APPS += []
 
 # Middlewares
 MIDDLEWARE = [
@@ -112,10 +120,10 @@ MANAGERS = ADMINS
 # ##### DJANGO RUNNING CONFIGURATION ######################
 
 # the default WSGI application
-WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
+WSGI_APPLICATION = f'{SITE_NAME}.wsgi.application'
 
 # the root URL configuration
-ROOT_URLCONF = '%s.urls' % SITE_NAME
+ROOT_URLCONF = f'{SITE_NAME}.urls'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
@@ -133,12 +141,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # finally grab the SECRET KEY
 try:
-    SECRET_KEY = open(SECRET_FILE).read().strip()
+    SECRET_KEY = config('DJANGO_SECRET_KEY', default=open(SECRET_FILE).read().strip())
 except IOError:
     try:
         from django.utils.crypto import get_random_string
+
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!$%&()=+-_'
         SECRET_KEY = get_random_string(50, chars)
+
         with open(SECRET_FILE, 'w') as f:
             f.write(SECRET_KEY)
     except IOError:
