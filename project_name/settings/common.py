@@ -63,7 +63,11 @@ DEFAULT_APPS = [
 ]
 
 # Libs
-DEFAULT_APPS += []
+DEFAULT_APPS += [
+    'django_crontab',
+    # 'simple_history',
+    # 'corsheaders',
+]
 
 # Apps
 DEFAULT_APPS += []
@@ -72,11 +76,13 @@ DEFAULT_APPS += []
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 # template stuff
@@ -141,7 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # finally grab the SECRET KEY
 try:
-    SECRET_KEY = config('DJANGO_SECRET_KEY', default=open(SECRET_FILE).read().strip())
+    SECRET_KEY = open(SECRET_FILE).read().strip()
 except IOError:
     try:
         from django.utils.crypto import get_random_string
@@ -152,4 +158,4 @@ except IOError:
         with open(SECRET_FILE, 'w') as f:
             f.write(SECRET_KEY)
     except IOError:
-        raise Exception('Could not open %s for writing!' % SECRET_FILE)
+        raise Exception(f'Could not open {SECRET_FILE} for writing!')

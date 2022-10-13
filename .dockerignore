@@ -1,0 +1,15 @@
+# comment
+.vscode
+configs
+logs
+run/media
+run/static
+venv
+**/*.sample
+.coveragerc
+.editorconfig
+.flake8
+.travis.yml
+Makefile
+README.rst
+tox.ini

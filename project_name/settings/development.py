@@ -35,3 +35,26 @@ DATABASES = {
 # ##### APPLICATION CONFIGURATION #########################
 
 INSTALLED_APPS = DEFAULT_APPS
+
+
+CORS_ALLOWED_ORIGIN_REGEXES = []
+
+if HOMOLOG:
+    CORS_ALLOWED_ORIGIN_REGEXES += [
+        # Homologação
+        r'^https?://(\w+\.|)\w+\.local$',
+        r'^https?://(\w+\.|)\w+\.local:([3|4|5|8|9][0-9]{3})$',
+        r'^https?://localhost$',
+        r'^https?://localhost:([3|4|5|8|9][0-9]{3})$',
+    ]
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES += [
+        # Produção
+        r'^https?://(\w+\.|)\w+\.exemplo\.com$',
+    ]
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+
+# ##### CRON CONFIGURATION ################################
+CRONJOBS = config('DJANGO_CRONS', default=[], cast=lambda v: [tuple(s.split(';')) for s in v.split('|')])

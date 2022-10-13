@@ -1,8 +1,12 @@
 # common
 dj-database-url
 Django~=3.2
+django-cors-headers
+django-crontab
+django-simple-history
 psycopg2-binary~=2.9
 python-decouple
+requests
 
 # production
 gunicorn

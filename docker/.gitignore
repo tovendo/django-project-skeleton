@@ -1,0 +1,12 @@
+# specific .gitignore for this directory
+
+# ignore everything
+*
+
+# and this .gitignore
+!.gitignore
+
+!Dockerfile
+
+!configs
+!scripts
