@@ -2,7 +2,7 @@
 from os.path import join
 
 # Django imports
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # project imports
 from .common import PROJECT_ROOT, MIDDLEWARE
