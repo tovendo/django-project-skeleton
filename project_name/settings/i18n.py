@@ -26,8 +26,8 @@ USE_TZ = True
 
 # This list of languages will be provided
 LANGUAGES = (
-    ('en', _('English')),
     ('pt-br', _('Brazilian Portuguese')),
+    ('en', _('English')),
 )
 
 # Look for translations in these locations

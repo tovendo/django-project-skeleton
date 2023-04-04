@@ -5,11 +5,11 @@
 python manage.py migrate --no-input
 python manage.py collectstatic --no-input
 
-crond start
+# crond start
 
-python manage.py crontab remove
-python manage.py crontab add
-python manage.py crontab show
+# python manage.py crontab remove
+# python manage.py crontab add
+# python manage.py crontab show
 
 nginx -c /etc/nginx/nginx.conf
 

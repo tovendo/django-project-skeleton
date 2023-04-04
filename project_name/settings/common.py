@@ -13,12 +13,16 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 # Python imports
 import sys
 
+from pathlib import Path
 from datetime import timedelta
 from decouple import config
 from os.path import abspath, basename, dirname, join, normpath
 
 
 # ##### PATH CONFIGURATION ################################
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # fetch Django's project directory
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
@@ -64,7 +68,7 @@ DEFAULT_APPS = [
 
 # Libs
 DEFAULT_APPS += [
-    'django_crontab',
+    # 'django_crontab',
     # 'simple_history',
     # 'corsheaders',
 ]

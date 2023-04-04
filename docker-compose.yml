@@ -5,8 +5,8 @@ services:
         build:
             context: .
             dockerfile: ${DOCKER_VOLUME_DOCKER}/Dockerfile
-        container_name: ${DOCKER_PROJECT_NAME}-web
-        command: /start-api
+        container_name: ${DOCKER_PROJECT_NAME}
+        command: /start
         restart: unless-stopped
         env_file:
             - .env
