@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.10-alpine
+ARG PYTHON_VERSION=3.10.11-alpine
 
 # pull official base image
 FROM python:$PYTHON_VERSION as compiler

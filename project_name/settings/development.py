@@ -16,7 +16,7 @@ DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
 HOMOLOG = config('DJANGO_HOMOLOG', default=True, cast=bool)
 
 # allow all hosts during development
-ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', default='127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
 # ##### DATABASE CONFIGURATION ############################
@@ -42,15 +42,13 @@ CORS_ALLOWED_ORIGIN_REGEXES = []
 if HOMOLOG:
     CORS_ALLOWED_ORIGIN_REGEXES += [
         # Homologação
-        r'^https?://(\w+\.|)\w+\.local$',
-        r'^https?://(\w+\.|)\w+\.local:([3|4|5|8|9][0-9]{3})$',
-        r'^https?://localhost$',
-        r'^https?://localhost:([3|4|5|8|9][0-9]{3})$',
+        r'^https?://(\w+\.)+?local(:[3|4|5|8|9][0-9]{3})?$',
+        r'^https?://(localhost|127\.0\.0\.1)(:[3|4|5|8|9][0-9]{3})?$',
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES += [
         # Produção
-        r'^https?://(\w+\.|)\w+\.exemplo\.com$',
+        r'^https?://(\w+\.)+?exemplo\.com$',
     ]
 
 CORS_ALLOW_ALL_ORIGINS = False
