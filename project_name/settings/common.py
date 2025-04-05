@@ -13,39 +13,39 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 # Python imports
 import sys
 
-from os.path import abspath, basename, dirname, join, normpath
+from pathlib import Path
 
 
 # ##### PATH CONFIGURATION ################################
 
 # fetch Django's project directory
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+DJANGO_ROOT = Path(__file__).resolve().parent.parent
 
 # fetch the project_root
-PROJECT_ROOT = dirname(DJANGO_ROOT)
+PROJECT_ROOT = DJANGO_ROOT.parent
 
 # the name of the whole site
-SITE_NAME = basename(DJANGO_ROOT)
+SITE_NAME = DJANGO_ROOT.name
 
 # collect static files here
-STATIC_ROOT = join(PROJECT_ROOT, 'run', 'static')
+STATIC_ROOT = PROJECT_ROOT.joinpath('run', 'static')
 
 # collect media files here
-MEDIA_ROOT = join(PROJECT_ROOT, 'run', 'media')
+MEDIA_ROOT = PROJECT_ROOT.joinpath('run', 'media')
 
 # look for static assets here
 STATICFILES_DIRS = [
-    join(PROJECT_ROOT, 'static'),
+    PROJECT_ROOT.joinpath('static'),
 ]
 
 # look for templates here
 # This is an internal setting, used in the TEMPLATES directive
 PROJECT_TEMPLATES = [
-    join(PROJECT_ROOT, 'templates'),
+    PROJECT_ROOT.joinpath('templates'),
 ]
 
 # add apps/ to the Python path
-sys.path.append(normpath(join(PROJECT_ROOT, 'apps')))
+sys.path.append(PROJECT_ROOT.joinpath('apps'))
 
 
 # ##### APPLICATION CONFIGURATION #########################
@@ -61,14 +61,14 @@ DEFAULT_APPS = [
 ]
 
 # Libs
-DEFAULT_APPS += [
+DEFAULT_APPS.extend([
     # 'django_crontab',
     # 'simple_history',
     # 'corsheaders',
-]
+])
 
 # Apps
-DEFAULT_APPS += []
+DEFAULT_APPS.extend([])
 
 # Middlewares
 MIDDLEWARE = [
@@ -112,7 +112,7 @@ USE_I18N = False
 
 # We store the secret key here
 # The required SECRET_KEY is fetched at the end of this file
-SECRET_FILE = normpath(join(PROJECT_ROOT, 'run', 'SECRET.key'))
+SECRET_FILE = PROJECT_ROOT.joinpath('run', 'SECRET.key')
 
 # these persons receive error notification
 ADMINS = (

@@ -1,6 +1,7 @@
 # comment
 .vscode
 configs
+doc
 logs
 run/media
 run/static

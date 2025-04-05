@@ -1,21 +1,29 @@
-version: "3.7"
+x-container: &container
+  build:
+    context: .
+    dockerfile: ${DOCKER_VOLUME_DOCKER}/Dockerfile
+  image: ${DOCKER_PROJECT_NAME}:${DOCKER_PROJECT_VERSION:-latest}
+  restart: unless-stopped
+  env_file:
+    - .env
+  volumes:
+    - ${DOCKER_VOLUME_APP:-.}:/code
+    - ${DOCKER_VOLUME_STATIC:-./run/static}:/code/run/static
+    - ${DOCKER_VOLUME_MEDIA:-./run/media}:/code/run/media
+    - ${DOCKER_VOLUME_DOCKER:-./docker}:/docker
+    - ${DOCKER_VOLUME_LOGS:-./logs}:/code/logs
+
+x-ports: &ports
+  ports:
+    - ${DOCKER_PORT:-8000}:80
 
 services:
-    web:
-        build:
-            context: .
-            dockerfile: ${DOCKER_VOLUME_DOCKER}/Dockerfile
-        container_name: ${DOCKER_PROJECT_NAME}
-        command: /start
-        restart: unless-stopped
-        env_file:
-            - .env
-        ports:
-            - ${DOCKER_NGINX_PORT}:80
-            - ${DOCKER_NGINX_PORT_SSL}:443
-        volumes:
-            - ${DOCKER_VOLUME_APP}:/code
-            - ${DOCKER_VOLUME_STATIC}:/code/run/static
-            - ${DOCKER_VOLUME_MEDIA}:/code/run/media
-            - ${DOCKER_VOLUME_DOCKER}:/docker
-            - ${DOCKER_VOLUME_APP}/logs:/code/logs
+  app:
+    <<: [*container, *ports]
+    container_name: ${DOCKER_PROJECT_NAME}-app
+    command: /start-app
+  worker:
+    <<: *container
+    container_name: ${DOCKER_PROJECT_NAME}-worker
+    image: ${DOCKER_PROJECT_NAME}:${DOCKER_PROJECT_VERSION:-latest}
+    command: /start-worker

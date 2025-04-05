@@ -1,6 +1,3 @@
-# Python imports
-from os.path import join
-
 # Django imports
 from django.utils.translation import gettext_lazy as _
 
@@ -18,9 +15,6 @@ TIME_ZONE = 'America/Maceio'
 # Internationalization
 USE_I18N = True
 
-# Localisation
-USE_L10N = True
-
 # enable timezone awareness by default
 USE_TZ = True
 
@@ -32,10 +26,10 @@ LANGUAGES = (
 
 # Look for translations in these locations
 LOCALE_PATHS = (
-    join(PROJECT_ROOT, 'locale'),
+    PROJECT_ROOT.joinpath('locale'),
 )
 
 # Inject the localization middleware into the right position
 MIDDLEWARE = [y for i, x in enumerate(MIDDLEWARE) for y in (
-    ('django.middleware.locale.LocaleMiddleware', x) if MIDDLEWARE[i-1] == \
+    ('django.middleware.locale.LocaleMiddleware', x) if MIDDLEWARE[i - 1] == \
     'django.contrib.sessions.middleware.SessionMiddleware' else (x, ))]

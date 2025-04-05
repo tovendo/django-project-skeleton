@@ -1,5 +1,5 @@
 dj-database-url
-Django~=4.2
+Django~=5.2
 django-cors-headers
 django-crontab
 django-simple-history

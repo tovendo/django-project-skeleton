@@ -42,8 +42,8 @@ server {
         alias /code/run/static/;
     }
 
-    location /media/ {
-        autoindex on;
-        alias /code/run/media/;
-    }
+    # location /media/ {
+    #     autoindex on;
+    #     alias /code/run/media/;
+    # }
 }
